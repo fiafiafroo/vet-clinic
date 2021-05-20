@@ -22,6 +22,10 @@ public class Dog {
         this.favouriteFood = favouriteFood;
     }
 
+    public static DogBuilder called(String name) {
+        return new DogBuilder(name);
+    }
+
     public String getName() {
         return this.name;
     }
@@ -36,5 +40,25 @@ public class Dog {
 
     public String getFavouriteFood() {
         return favouriteFood;
+    }
+
+    public static class DogBuilder {
+        private String name;
+        private String breed;
+        private LocalDateTime dateOfBirth;
+
+        public DogBuilder(String name) {
+            this.name = name;
+        }
+
+        public DogBuilder ofBreed(String breed) {
+            this.breed = breed;
+            return this;
+        }
+
+        public Dog bornOn(LocalDateTime dateOfBirth) {
+            this.dateOfBirth = dateOfBirth;
+            return new Dog(name, breed, dateOfBirth);
+        }
     }
 }

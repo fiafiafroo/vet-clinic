@@ -10,7 +10,9 @@ public class WhenCreatingANewDog {
     public void it_should_have_a_name() {
         LocalDateTime birthday = LocalDateTime.now();
 
-        Dog fido = new Dog("Fido", "Poodle", birthday);
+        Dog fido = Dog.called("Fido")
+                .ofBreed("Poodle")
+                .bornOn(birthday);
 
         Assert.assertEquals("Fido", fido.getName());
         Assert.assertEquals("Poodle", fido.getBreed());
