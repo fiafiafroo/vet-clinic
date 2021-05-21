@@ -8,21 +8,18 @@ public class Dog {
     private final String breed;
     private final LocalDateTime dateOfBirth;
     private final String favouriteFood;
+    private final String colour;
 
-    public Dog(String name, String breed, LocalDateTime dateOfBirth) {
-
-        this(name, breed, dateOfBirth, null);
-    }
-
-    public Dog(String name, String breed, LocalDateTime dateOfBirth, String favouriteFood) {
+    private Dog(String name, String breed, LocalDateTime dateOfBirth, String favouriteFood, String colour) {
 
         this.name = name;
         this.breed = breed;
         this.dateOfBirth = dateOfBirth;
         this.favouriteFood = favouriteFood;
+        this.colour = colour;
     }
 
-    public static DogBuilder called(String name) {
+    public static WithBreed called(String name) {
         return new DogBuilder(name);
     }
 
@@ -42,10 +39,23 @@ public class Dog {
         return favouriteFood;
     }
 
-    public static class DogBuilder {
-        private String name;
+    public String getColour() {
+        return colour;
+    }
+
+    interface WithBreed {
+        OfColour ofBreed(String breed);
+    }
+
+    interface OfColour {
+        DogBuilder ofColour(String colour);
+    }
+
+    public static class DogBuilder implements WithBreed, OfColour{
+        private final String name;
         private String breed;
-        private LocalDateTime dateOfBirth;
+        private String favouriteFood;
+        private String colour;
 
         public DogBuilder(String name) {
             this.name = name;
@@ -57,8 +67,17 @@ public class Dog {
         }
 
         public Dog bornOn(LocalDateTime dateOfBirth) {
-            this.dateOfBirth = dateOfBirth;
-            return new Dog(name, breed, dateOfBirth);
+            return new Dog(name, breed, dateOfBirth, favouriteFood, colour);
+        }
+
+        public DogBuilder withFavouriteFood(String favouriteFood) {
+            this.favouriteFood = favouriteFood;
+            return this;
+        }
+
+        public DogBuilder ofColour(String colour) {
+            this.colour = colour;
+            return this;
         }
     }
 }
