@@ -7,12 +7,14 @@ public class Dog {
     private final LocalDateTime dateOfBirth;
     private final String breed;
     private final String colour;
+    private final String favouriteFood;
 
-    public Dog(String name, LocalDateTime dateOfBirth, String breed, String colour) {
+    public Dog(String name, LocalDateTime dateOfBirth, String breed, String colour, String favouriteFood) {
         this.name = name;
         this.dateOfBirth = dateOfBirth;
         this.breed = breed;
         this.colour = colour;
+        this.favouriteFood = favouriteFood;
     }
 
     public static OfBreed called(String name) {
@@ -35,6 +37,10 @@ public class Dog {
         return colour;
     }
 
+    public String getFavouriteFood() {
+        return favouriteFood;
+    }
+
     public interface OfBreed {
         OfColour ofBreed(String breed);
     }
@@ -47,6 +53,7 @@ public class Dog {
         private final String name;
         private String breed;
         private String colour;
+        private String favouriteFood;
 
         public DogBreeder(String name) {
 
@@ -59,11 +66,16 @@ public class Dog {
         }
 
         public Dog bornOn(LocalDateTime dateOfBirth) {
-            return new Dog(name, dateOfBirth, breed, colour);
+            return new Dog(name, dateOfBirth, breed, colour, favouriteFood);
         }
 
         public DogBreeder ofColour(String colour) {
             this.colour = colour;
+            return this;
+        }
+
+        public DogBreeder favouriteFood(String favouriteFood) {
+            this.favouriteFood = favouriteFood;
             return this;
         }
     }

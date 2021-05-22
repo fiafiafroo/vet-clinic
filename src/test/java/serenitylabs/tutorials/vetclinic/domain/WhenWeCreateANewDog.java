@@ -18,7 +18,21 @@ public class WhenWeCreateANewDog {
         Assert.assertEquals("Poodle", jasper.getBreed());
         Assert.assertEquals("black", jasper.getColour());
         Assert.assertEquals(THE_FOURTH_OF_JULY, jasper.getDateOfBirth());
-
     }
 
+    @Test
+    public void a_dog_can_have_an_optional_favourite_food() {
+        LocalDateTime THE_FOURTH_OF_JULY = LocalDateTime.of(2021,7,4,0,0);
+        Dog jasper = Dog.called("Jasper")
+                .ofBreed("Poodle")
+                .ofColour("black")
+                .favouriteFood("homework")
+                .bornOn(THE_FOURTH_OF_JULY);
+
+        Assert.assertEquals("Jasper", jasper.getName());
+        Assert.assertEquals("Poodle", jasper.getBreed());
+        Assert.assertEquals("black", jasper.getColour());
+        Assert.assertEquals("homework", jasper.getFavouriteFood());
+        Assert.assertEquals(THE_FOURTH_OF_JULY, jasper.getDateOfBirth());
+    }
 }
