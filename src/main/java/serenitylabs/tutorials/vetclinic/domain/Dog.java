@@ -36,10 +36,14 @@ public class Dog {
     }
 
     public interface OfBreed {
-        DogBreeder ofBreed(String breed);
+        OfColour ofBreed(String breed);
     }
 
-    public static class DogBreeder implements OfBreed{
+    public interface OfColour {
+        DogBreeder ofColour(String colour);
+    }
+
+    public static class DogBreeder implements OfBreed, OfColour{
         private final String name;
         private String breed;
         private String colour;
