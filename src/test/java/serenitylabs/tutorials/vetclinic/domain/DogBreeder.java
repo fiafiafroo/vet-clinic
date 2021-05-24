@@ -14,11 +14,18 @@ public class DogBreeder implements WithBreed, WithColour {
         return new DogBreeder();
     }
 
-    public WithBreed called(String name) {
+    public static DogBreeder aLargeDog() {
+        return aDog().ofBreed("Labrador");
+    }
+
+    public static DogBreeder aSmallDog() {
+        return aDog().ofBreed("Poodle");
+    }
+
+    public DogBreeder called(String name) {
         this.name = name;
         return this;
     }
-
 
     public DogBreeder ofBreed(String breed) {
         this.breed = breed;

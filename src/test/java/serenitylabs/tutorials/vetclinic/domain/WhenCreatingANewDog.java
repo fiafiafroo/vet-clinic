@@ -12,15 +12,13 @@ public class WhenCreatingANewDog {
     @Test
     public void it_should_have_a_name_a_breed_a_colour_and_a_date_of_birth() {
 
-
-        Dog fido = DogBreeder.aDog()
+        Dog fido = DogBreeder.aLargeDog()
                 .called("Fido")
-                .ofBreed("Poodle")
                 .ofColour("Black")
                 .bornOn(THE_FOURTH_OF_JULY);
 
         Assert.assertEquals("Fido", fido.getName());
-        Assert.assertEquals("Poodle", fido.getBreed());
+        Assert.assertEquals("Labrador", fido.getBreed());
         Assert.assertEquals("Black", fido.getColour());
         Assert.assertEquals(THE_FOURTH_OF_JULY, fido.getDateOfBirth());
 
@@ -28,14 +26,13 @@ public class WhenCreatingANewDog {
 
     @Test
     public void a_dog_can_have_an_optional_favourite_food() {
-        Dog fido = DogBreeder.aDog()
-                .called("Fido")
-                .ofBreed("Poodle")
+        Dog fido = DogBreeder.aSmallDog()
+                .called("Spot")
                 .ofColour("Black")
                 .withFavouriteFood("pizza")
                 .bornOn(THE_FOURTH_OF_JULY);
 
-        Assert.assertEquals("Fido", fido.getName());
+        Assert.assertEquals("Spot", fido.getName());
         Assert.assertEquals("Poodle", fido.getBreed());
         Assert.assertEquals("Black", fido.getColour());
         Assert.assertEquals("pizza", fido.getFavouriteFood());
