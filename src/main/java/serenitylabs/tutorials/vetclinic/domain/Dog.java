@@ -1,26 +1,24 @@
 package serenitylabs.tutorials.vetclinic.domain;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public class Dog {
 
     private final String name;
     private final String breed;
-    private final LocalDateTime dateOfBirth;
+    private final LocalDate dateOfBirth;
     private final String favouriteFood;
     private final String colour;
+    private final String favouriteToy;
 
-    private Dog(String name, String breed, LocalDateTime dateOfBirth, String favouriteFood, String colour) {
+    Dog(String name, String breed, LocalDate dateOfBirth, String favouriteFood, String colour, String favouriteToy) {
 
         this.name = name;
         this.breed = breed;
         this.dateOfBirth = dateOfBirth;
         this.favouriteFood = favouriteFood;
         this.colour = colour;
-    }
-
-    public static WithBreed called(String name) {
-        return new DogBuilder(name);
+        this.favouriteToy = favouriteToy;
     }
 
     public String getName() {
@@ -31,7 +29,7 @@ public class Dog {
         return breed;
     }
 
-    public LocalDateTime getDateOfBirth() {
+    public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
 
@@ -43,41 +41,8 @@ public class Dog {
         return colour;
     }
 
-    interface WithBreed {
-        OfColour ofBreed(String breed);
+    public String getFavouriteToy() {
+        return favouriteToy;
     }
 
-    interface OfColour {
-        DogBuilder ofColour(String colour);
-    }
-
-    public static class DogBuilder implements WithBreed, OfColour{
-        private final String name;
-        private String breed;
-        private String favouriteFood;
-        private String colour;
-
-        public DogBuilder(String name) {
-            this.name = name;
-        }
-
-        public DogBuilder ofBreed(String breed) {
-            this.breed = breed;
-            return this;
-        }
-
-        public Dog bornOn(LocalDateTime dateOfBirth) {
-            return new Dog(name, breed, dateOfBirth, favouriteFood, colour);
-        }
-
-        public DogBuilder withFavouriteFood(String favouriteFood) {
-            this.favouriteFood = favouriteFood;
-            return this;
-        }
-
-        public DogBuilder ofColour(String colour) {
-            this.colour = colour;
-            return this;
-        }
-    }
 }
