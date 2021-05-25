@@ -14,12 +14,24 @@ public class DogBreeder implements OfBreed, OfColour {
         return new DogBreeder();
     }
 
-    public OfBreed called(String name) {
+    public static DogBreeder aSmallDog() {
+        return aDog().ofBreed("Poodle");
+    }
+
+    public static DogBreeder aLargeDog() {
+        return aDog().ofBreed("Labrador");
+    }
+
+    public static DogBreeder aGuardDog() {
+        return aDog().ofBreed("Dobermann");
+    }
+
+    public DogBreeder called(String name) {
         this.name = name;
         return this;
     }
 
-    public OfColour ofBreed(String breed) {
+    public DogBreeder ofBreed(String breed) {
         this.breed = breed;
         return this;
     }
