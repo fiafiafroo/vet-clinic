@@ -3,13 +3,15 @@ package serenitylabs.tutorials.vetclinic.domain;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public class WhenWeCreateANewDog {
+    public static final LocalDate THE_FOURTH_OF_JULY = LocalDate.of(2021, 7, 4);
+
     @Test
     public void a_new_dog_should_have_a_name() {
-        LocalDateTime THE_FOURTH_OF_JULY = LocalDateTime.of(2021,7,4,0,0);
-        Dog jasper = Dog.called("Jasper")
+        Dog jasper = DogBreeder.aDog()
+                .called("Jasper")
                 .ofBreed("Poodle")
                 .ofColour("black")
                 .bornOn(THE_FOURTH_OF_JULY);
@@ -22,8 +24,9 @@ public class WhenWeCreateANewDog {
 
     @Test
     public void a_dog_can_have_an_optional_favourite_food() {
-        LocalDateTime THE_FOURTH_OF_JULY = LocalDateTime.of(2021,7,4,0,0);
-        Dog jasper = Dog.called("Jasper")
+
+        Dog jasper = DogBreeder.aDog()
+                .called("Jasper")
                 .ofBreed("Poodle")
                 .ofColour("black")
                 .favouriteFood("homework")
@@ -38,8 +41,8 @@ public class WhenWeCreateANewDog {
 
     @Test
     public void a_dog_can_have_an_optional_favourite_toy() {
-        LocalDateTime THE_FOURTH_OF_JULY = LocalDateTime.of(2021,7,4,0,0);
-        Dog jasper = Dog.called("Jasper")
+        Dog jasper = DogBreeder.aDog()
+                .called("Jasper")
                 .ofBreed("Poodle")
                 .ofColour("black")
                 .favouriteToy("Stuffed Bunny")
