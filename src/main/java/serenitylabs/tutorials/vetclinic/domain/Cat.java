@@ -38,6 +38,10 @@ public class Cat extends Animal{
         return new CatBuilder(name);
     }
 
+    public String complaint() {
+        return "Meow";
+    }
+
     public static class CatBuilder {
         private final String name;
         private String breed;

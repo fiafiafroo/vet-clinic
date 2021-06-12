@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.hasItems;
+import static org.hamcrest.Matchers.*;
 
 public class WhenCollectingAnimals {
 
@@ -20,5 +20,19 @@ public class WhenCollectingAnimals {
         animals.add(felix);
 
         assertThat(animals, hasItems(felix, fido));
+    }
+
+    @Test
+    public void a_dog_complains_by_growling() {
+        Dog fido = Dog.called("Fido").ofBreed("Labrador").andOfColour("Black");
+
+        assertThat(fido.complaint(), is(equalTo("Grrrr")));
+    }
+
+    @Test
+    public void a_cat_complains_by_meowing() {
+        Cat felix = Cat.called("Felix").ofBreed("Siamese").andOfColour("White");
+
+        assertThat(felix.complaint(), is(equalTo("Meow")));
     }
 }
