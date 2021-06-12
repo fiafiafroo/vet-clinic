@@ -1,23 +1,35 @@
 package serenitylabs.tutorials.vetclinic.model;
 
 import serenitylabs.tutorials.vetclinic.Breed;
+import serenitylabs.tutorials.vetclinic.Meal;
 import serenitylabs.tutorials.vetclinic.Pet;
 import serenitylabs.tutorials.vetclinic.collections.katas.PetFood;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class FoodDispenser {
-    public void feed(Pet pet) {
-        if (pet.getBreed() == Breed.Cat) {
-            feedCat(pet);
-        } else if (pet.getBreed() == Breed.Dog) {
-            feedDog(pet);
-        }
+
+    private static final Map<Breed, PetFood> BRAND_FOR_BREED = new HashMap<>();
+    private static final Map<Breed, Integer> GRAMS_PER_KILO_BY_PET = new HashMap<>();
+
+    static {
+        BRAND_FOR_BREED.put(Breed.Dog, PetFood.FidosFood);
+        BRAND_FOR_BREED.put(Breed.Cat, PetFood.KittyKat);
+
+        GRAMS_PER_KILO_BY_PET.put(Breed.Dog, 20);
+        GRAMS_PER_KILO_BY_PET.put(Breed.Cat, 10);
     }
 
-    private void feedDog(Pet pet) {
-        pet.feed(20 * pet.getWeightInKilos(), PetFood.FidosFood);
+    public Meal prepareMealFor(Pet pet) {
+        return new Meal(rightAmountOfFood(pet), rightFoodFor(pet));
     }
 
-    private void feedCat(Pet pet) {
-        pet.feed(10 * pet.getWeightInKilos(), PetFood.KittyKat);
+    private PetFood rightFoodFor(Pet pet) {
+        return BRAND_FOR_BREED.get(pet.getBreed());
+    }
+
+    private double rightAmountOfFood(Pet pet) {
+        return pet.getWeightInKilos() * GRAMS_PER_KILO_BY_PET.get(pet.getBreed());
     }
 }

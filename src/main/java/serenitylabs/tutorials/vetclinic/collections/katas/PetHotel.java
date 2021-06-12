@@ -18,15 +18,13 @@ public class PetHotel {
         return new ArrayList<>(pets);
     }
 
-    public void feedTheGuests() {
-        for (Pet pet : getPets()) {
-            feed(pet);
-        }
-    }
+    FoodDispenser foodDispenser = new FoodDispenser();
 
-    private void feed(Pet pet) {
-        FoodDispenser foodDispenser = new FoodDispenser();
-        foodDispenser.feed(pet);
+    public void feedTheGuests() {
+
+        for (Pet pet : getPets()) {
+            pet.eat(foodDispenser.prepareMealFor(pet));
+        }
     }
 
     private enum HotelAvailability {Available, Full}
