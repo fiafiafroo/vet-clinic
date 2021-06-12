@@ -1,7 +1,7 @@
 package serenitylabs.tutorials.vetclinic.collections.katas;
 
-import serenitylabs.tutorials.vetclinic.Breed;
 import serenitylabs.tutorials.vetclinic.Pet;
+import serenitylabs.tutorials.vetclinic.model.FoodDispenser;
 
 import java.util.*;
 
@@ -25,19 +25,8 @@ public class PetHotel {
     }
 
     private void feed(Pet pet) {
-        if (pet.getBreed() == Breed.Cat) {
-            feedCat(pet);
-        } else if (pet.getBreed() == Breed.Dog) {
-            feedDog(pet);
-        }
-    }
-
-    private void feedDog(Pet pet) {
-        pet.feed(20 * pet.getWeightInKilos(), PetFood.FidosFood);
-    }
-
-    private void feedCat(Pet pet) {
-        pet.feed(10 * pet.getWeightInKilos(), PetFood.KittyKat);
+        FoodDispenser foodDispenser = new FoodDispenser();
+        foodDispenser.feed(pet);
     }
 
     private enum HotelAvailability {Available, Full}
