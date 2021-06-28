@@ -1,4 +1,5 @@
 package serenitylabs.tutorials.vetclinic.domain;
 
-public class Animal {
+public abstract class Animal {
+    abstract String complaint();
 }

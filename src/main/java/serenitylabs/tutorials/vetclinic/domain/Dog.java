@@ -19,6 +19,11 @@ public class Dog extends Animal{
     }
 
     @Override
+    public String complaint(){
+        return "Grrrr";
+    }
+
+    @Override
     public String toString() {
         return name + " the " + (Joiner.on(" and").join(colour) + " " + breed).toLowerCase();
     }
@@ -37,10 +42,6 @@ public class Dog extends Animal{
 
     public static DogBuilder called(String name) {
         return new DogBuilder(name);
-    }
-
-    public String complaint() {
-        return "Grrrr";
     }
 
     public static class DogBuilder {

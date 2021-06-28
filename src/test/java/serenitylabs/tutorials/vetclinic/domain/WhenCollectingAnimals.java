@@ -35,4 +35,17 @@ public class WhenCollectingAnimals {
 
         assertThat(felix.complaint(), is(equalTo("Meow")));
     }
+
+    @Test
+    public void cats_and_dogs_complain_to_the_assistant() {
+        Dog fido = Dog.called("Fido").ofBreed("Labrador").andOfColour("Black");
+        Cat felix = Cat.called("Felix").ofBreed("Siamese").andOfColour("White");
+
+        ComplaintRegister complaintRegister = new ComplaintRegister();
+        VetAssistant assistant = new VetAssistant(complaintRegister);
+
+        assistant.recordComplainFrom(fido);
+        assistant.recordComplainFrom(felix);
+        assertThat(complaintRegister.getComplaints(), hasItems("Grrrr", "Meow"));
+    }
 }
